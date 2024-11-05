@@ -9,6 +9,12 @@ class DataExtractor:
     """Handles data extraction from the webpage."""
     def __init__(self, driver):
         self.driver = driver
+        """
+        instead of passing driver as a parameter,
+        pass the DriverSetup object instead.
+
+        therefore, you dont need to create WebDriverWait anymore
+        """
         self.wait = WebDriverWait(driver, 10)
         self.navigator = PageNavigator(driver)
 
@@ -22,6 +28,14 @@ class DataExtractor:
     def extract_contact_info(self):
         """Extract phone number and website."""
         try:
+            """
+            bar is too long, try to shorten it. Standard length is 79 characters
+
+            example: 
+            xpath = '//*[@id="ypgBody"]/div[3]/div/div[1]/div[2]/div[1]/div[2]/div[1]/div/ul'
+            bar = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located(By.XPATH, xpath))
+            """
             bar = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="ypgBody"]/div[3]/div/div[1]/div[2]/div[1]/div[2]/div[1]/div/ul')))
             phone_button = bar.find_element(By.CSS_SELECTOR, 'li a')
             phone_button.click()

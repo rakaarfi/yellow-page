@@ -10,3 +10,8 @@ class DataExporter:
         """Exports the collected data to an Excel file."""
         df = pd.DataFrame(self.data)
         df.to_excel(file_name, index=False)
+
+"""
+If this code only export to excel, we dont need to create new class.
+But implement OOP is good though.
+"""
