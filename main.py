@@ -1,17 +1,24 @@
-from setup_driver import DriverSetup
-from exporting_data import DataExporter
-from collecting_data import DataCollector
+import argparse
 
-# Main execution
-driver_setup = DriverSetup()
-data_collector = DataCollector(driver_setup.driver)
+from scraping.main_parsing import parsing
 
-# Define URL and open it
-url = 'https://www.yellowpages.ca/search/si/1/Dentists/Toronto+ON'
-data_collector.collect_data(url)
+def main():
+    """
+    Main function to handle command-line arguments and trigger the web scraping and data saving process.
 
-# Export data using DataExporter
-exporter = DataExporter(data_collector.data)
-exporter.to_excel('dentists_data.xlsx')
+    Command-line Arguments:
+    --save_as (str): Optional argument to specify the name of the Excel file to save the data to.
+                      Defaults to 'dentists_data.xlsx' if not provided.
+    """
+    # Setup argument parser
+    parser = argparse.ArgumentParser(description='Scrape Amazon seller information and save it to an Excel file')
+    parser.add_argument('--save_as', type=str, default='dentists_data_trial.xlsx', help='Specify the name of the Excel file to save the data to')
 
-driver_setup.close()
+    # Parse the arguments
+    args = parser.parse_args()
+
+    # Call the parsing function
+    parsing(args.save_as)
+
+if __name__ == "__main__":
+    main()
