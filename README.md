@@ -1,5 +1,5 @@
-# Dentist Data Scraper
-This repository contains a web scraper built to extract data about dentists from the Yellow Pages website for Toronto, ON. The tool collects information such as the business name, address, phone number, and website link, and saves the data in an Excel file.
+# Yellow Pages Dentist Data Scraper
+This repository contains a web scraper built to collect detailed information about dentists listed on Yellow Pages for Toronto, ON. The tool scrapes data such as business name, address, phone number, and website URL, saving the output in an Excel file..
 
 ## Table of Contents
 - [Features](#Features)
@@ -10,17 +10,18 @@ This repository contains a web scraper built to extract data about dentists from
 - [Copyright](#Copyright)
   
 ## Features
-- Scrapes dentist listings from Yellow Pages.
-- Extracts essential details including URL, Title, Full Address, Phone Number, and Website.
-- Exports the collected data to an Excel file for easy data management.
+- Scrapes dentist information from Yellow Pages.
+- Extracts data fields including URL, Title, Address details, Phone Number, and Website.
+- Exports data to an Excel file for easy access and analysis.
   
 ## Project Structure
-- **main.py**: Entry point for running the scraper. Configures and initiates the scraping process.
-- **main_parsing.py**: Manages the main scraping flow, initializing necessary classes and starting the data collection process.
-- **setup_driver.py**: Sets up the Selenium WebDriver for Chrome, including options for window maximization and image loading preferences to optimize scraping.
-- **navigating_page.py**: Handles navigation on the website, including URL loading and element interaction.
-- **collecting_data.py**: Collects data from each listing on the Yellow Pages site, such as address, phone, and website.
-- **extracting_data.py**: Extracts specific data fields using CSS and XPath selectors, including handling contact information with multiple steps for data extraction.
+- **main.py**: Entry point for running the scraper. Configures command-line arguments and initiates the scraping process.
+- **main_parsing.py**: Coordinates the main scraping workflow, initializing classes and handling navigation, data collection, and saving.
+- **setup_driver.py**: Configures the Selenium WebDriver with options to improve speed and handle browser settings.
+- **wait_driver.py**: Manages wait times to ensure elements are loaded before interacting with them.
+- **navigating_page.py**: Handles page navigation tasks such as URL loading and element clicks.
+- **collecting_data.py**: Structures and stores the extracted data, handling data fields like Title, Address, Phone, and Website.
+- **extracting_data.py**: Extracts specific data fields using CSS and XPath selectors, including contact information.
 
 ## Requirements
 - Python 3.x
@@ -41,15 +42,15 @@ python main.py --save_as "output_file.xlsx"
 - `--save_as` (optional): Specifies the name of the output Excel file. Defaults to `dentists_data.xlsx` if not provided.
 ### Example
 ```
-python main.py --save_as "dentists_info.xlsx"
+python main.py --save_as "toronto_dentists.xlsx"
 ```
-This will start the scraper and save the results in an Excel file named `dentists_info.xlsx`.
+This will start the scraper and save the results in an Excel file named `toronto_dentists.xlsx`.
 
 ## Customization
-- Target URL: You can modify the URL to scrape a different category or location by updating the URL in `main_parsing.py`.
-- Data Fields: Modify fields or add new ones in `collecting_data.py` if you want to extract additional information from the listings.
+- **Target URL**: You can modify the URL in `main_parsing.py` to scrape data for different categories or locations.
+- **Data Fields**: Update fields or add new ones in `collecting_data.py` if you need additional details from the listings.
 
 ## Copyright
-Copyright©2024 Raka Arfi
+Copyright©2024 ***Raka Arfi***
 
 Released under MIT License
