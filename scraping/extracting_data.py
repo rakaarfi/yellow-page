@@ -2,13 +2,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
+from scraping.wait_driver import WaitDriver
+from scraping.navigating_page import PageNavigator
+
 
 class DataExtractor:
     """Handles data extraction from the webpage."""
-    def __init__(self, driver_setup, page_navigator):
-        self.driver = driver_setup.driver
-        self.wait = driver_setup.wait
-        self.navigator = page_navigator
+    def __init__(self, driver_setup):
+        self.driver = driver_setup
+        self.wait = WaitDriver(driver_setup).wait
+        self.navigator = PageNavigator(driver_setup)
 
     def get_text_by_selector(self, selector_type, selector_value):
         try:

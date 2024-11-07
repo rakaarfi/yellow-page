@@ -12,7 +12,7 @@ def main():
     """
     # Setup argument parser
     parser = argparse.ArgumentParser(description='Scrape Amazon seller information and save it to an Excel file')
-    parser.add_argument('--save_as', type=str, default='dentists_data_trial.xlsx', help='Specify the name of the Excel file to save the data to')
+    parser.add_argument('--save_as', type=str, default='dentists_data.xlsx', help='Specify the name of the Excel file to save the data to')
 
     # Parse the arguments
     args = parser.parse_args()
@@ -22,3 +22,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    

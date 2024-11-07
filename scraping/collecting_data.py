@@ -3,14 +3,17 @@ import pandas as pd
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
+from scraping.setup_driver import DriverSetup
+from scraping.navigating_page import PageNavigator
+from scraping.extracting_data import DataExtractor
+
 
 class DataCollector:
     """Handles the collection of data from listings."""
-    
-    def __init__(self, driver_setup, page_navigator, data_extractor):
-        self.driver = driver_setup.driver
-        self.navigator = page_navigator
-        self.extractor = data_extractor
+    def __init__(self):
+        self.driver = DriverSetup().driver
+        self.navigator = PageNavigator(self.driver)
+        self.extractor = DataExtractor(self.driver)
         self.data = {
             "URL": [], "Title": [], "Full Address": [], "Street Address": [],
             "Address Locality": [], "Address Region": [], "Postal Code": [],
@@ -32,7 +35,8 @@ class DataCollector:
             # Extract the URLs from the links
             all_links = [website.get_attribute('href') for website in websites]
 
-            for link in all_links[:3]:
+            # Loop through each listing and collect data
+            for link in all_links:
                 # Navigate to the details page
                 self.navigator.open_url(link)
 

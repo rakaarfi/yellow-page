@@ -1,6 +1,5 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
 
 
 class DriverSetup:
@@ -16,7 +15,6 @@ class DriverSetup:
 
         # Initialize the WebDriver
         self.driver = webdriver.Chrome(options=options)
-        self.wait = WebDriverWait(self.driver, 10)
 
     def close(self):
         """Close the WebDriver."""

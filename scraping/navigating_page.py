@@ -1,11 +1,13 @@
 from selenium.webdriver.support import expected_conditions as EC
 
+from scraping.wait_driver import WaitDriver
+
 
 class PageNavigator:
     """Handles page navigation and interaction."""
     def __init__(self, driver_setup):
-        self.driver = driver_setup.driver
-        self.wait = driver_setup.wait
+        self.driver = driver_setup
+        self.wait = WaitDriver(driver_setup).wait
 
     def open_url(self, url):
         self.driver.get(url)
